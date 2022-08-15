@@ -19,12 +19,12 @@ class ChangeElementClass
     // создаем обработчик события "OnBeforeIBlockElementAdd"
     function OnBeforeIBlockElementAddHandler(&$arFields)
     {
-        $arSelect = Array("MORE_PHOTO");
+        $arSelect = Array("PROPERTY_MORE_PHOTO");
         $arFilter = Array("IBLOCK_ID" => 41, "ID" => intval($arFields["ID"]));
         $result = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
 
         if($arResult = $result->GetNext()) {
-            if (!empty($arFields['PREVIEW_PICTURE']) || !empty($arFields['DETAIL_PICTURE']) || !empty($arResult["PROPERTY_MORE_PHOTO"])){
+            if (!empty($arFields['PREVIEW_PICTURE']) || !empty($arFields['DETAIL_PICTURE']) || !empty($arResult["PROPERTY_MORE_PHOTO_VALUE"])){
                 // получаем ID для значения свойства HAS_PHOTO
                 $property_enums = CIBlockPropertyEnum::GetList(Array(), Array("IBLOCK_ID"=>41, "CODE"=>"HAS_PHOTO"));
                 $HAS_PHOTO_Y = $property_enums->Fetch()['ID'];
